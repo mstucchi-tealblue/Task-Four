@@ -29,16 +29,16 @@ Window {
                 propagateComposedEvents: true
                 onClicked:
                     switch(card1.state_card) {
-                    case "": {
-                        card2.card_opacity.running = true
-                        mouse.accepted = false } break
-                    case "dtapped": {
+                    case "":
+                        card2.card_opacity_anim.running = true
+                        mouse.accepted = false
+                        break
+                    case "dtapped":
                         card1.state=""
-                        card2.card_op = 1
+                        card2.card_opacity = 1
                         card2.state=""
-                        } break
+                        break
                     }
-
             }
         }
 
@@ -55,14 +55,15 @@ Window {
                 propagateComposedEvents: true
                 onClicked:
                     switch(card2.state_card) {
-                    case "": {
-                        card1.card_opacity.running = true
-                        mouse.accepted = false } break
-                    case "dtapped": {
+                    case "":
+                        card1.card_opacity_anim.running = true
+                        mouse.accepted = false
+                        break
+                    case "dtapped":
                         card2.state=""
-                        card1.card_op = 1
+                        card1.card_opacity = 1
                         card2.state=""
-                        } break
+                        break
                     }
 
             }

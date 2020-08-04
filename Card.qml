@@ -4,12 +4,13 @@ Rectangle {
     id: card
 
     property Rectangle root
-    property alias card_opacity: card_opacity
+    property alias card_opacity_anim: card_opacity_anim
+    property alias card_opacity: card.opacity
     property alias image: image
     property alias text_card: text_card
     property alias price_card: price
     property alias state_card: card.state
-    property alias card_op: card.opacity
+
 
     width:200
     height:100
@@ -63,7 +64,7 @@ Rectangle {
             case "": card.state = "dtapped"; break
             case "dtapped": card.state = ""; break
             }
-        }
+    }
 
 
     //Behaviors
@@ -84,7 +85,7 @@ Rectangle {
 
     //Animation
     OpacityAnimator on opacity {
-        id:card_opacity
+        id:card_opacity_anim
         target: card
         from: 1
         to: 0;
@@ -93,7 +94,7 @@ Rectangle {
     }
 
     states: [
-    State {
+        State {
             name: "dtapped"
             PropertyChanges { target: price; text:"" }
             PropertyChanges { target: loading; visible:true }
