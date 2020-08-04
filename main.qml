@@ -5,12 +5,16 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
 
     Rectangle {
         id:root
         anchors.fill: parent
-        color:"lightgray"
+
+        Image {
+            id: background
+            source: "images/background.png"
+            anchors.fill:parent
+        }
 
         Card {
             id: card1
