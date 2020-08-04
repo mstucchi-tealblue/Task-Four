@@ -1,13 +1,15 @@
-import QtQuick 2.15
+import QtQuick 2.5
 
 Rectangle {
-    id: scheda
+    id: card
 
     property Rectangle root
     property alias card_opacity: card_opacity
     property alias image: image
     property alias text_card: text_card
     property alias price_card: price
+    property alias state_card: card.state
+    property alias card_op: card.opacity
 
     width:200
     height:100
@@ -56,44 +58,53 @@ Rectangle {
     MouseArea {
         id: mouse_scheda
         anchors.fill:parent
-        onDoubleClicked: {
-            scheda.width = 200;
-            scheda.height = 300;
-            scheda.x = root.width/2 - height
-            scheda.y = root.height/2 - width
-            price.text = " "
-            loading.visible = true
+        onClicked:
+            switch(card.state) {
+            case "": card.state = "dtapped"; break
+            case "dtapped": card.state = ""; break
+            }
         }
-    }
+
 
     //Behaviors
     Behavior on width {
-        NumberAnimation { duration: 500 }
+        NumberAnimation { duration: 300 }
     }
     Behavior on height {
-        NumberAnimation { duration: 500 }
+        NumberAnimation { duration: 300 }
     }
 
     Behavior on x {
-        PropertyAnimation { duration: 500 }
+        PropertyAnimation { duration: 300 }
     }
 
     Behavior on y {
-        PropertyAnimation { duration: 500 }
+        PropertyAnimation { duration: 300 }
     }
 
     //Animation
     OpacityAnimator on opacity {
         id:card_opacity
-        target: scheda
+        target: card
         from: 1
         to: 0;
         duration: 500
         running:false
     }
 
+    states: [
+    State {
+            name: "dtapped"
+            PropertyChanges { target: price; text:"" }
+            PropertyChanges { target: loading; visible:true }
+            PropertyChanges { target: card; width:200 }
+            PropertyChanges { target: card; height:300}
+            PropertyChanges { target: card; x: root.width/2 - card.width/2; y: root.height/2 - card.height/2 }
+        }
+    ]
+    state:""
+
 
 }
-
 
 
