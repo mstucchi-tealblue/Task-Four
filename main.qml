@@ -61,10 +61,10 @@ Window {
                 }
             },
             Transition {
-                from: ""
-                to: "single2"
+                from: "single2"
+                to: ""
                 PropertyAnimation{
-                    target: card2
+                    target: card1
                     property: "opacity"
                     duration: 500
                 }
