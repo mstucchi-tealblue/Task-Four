@@ -5,14 +5,13 @@ Rectangle {
     id: card
     width:200
     height:100
+    color: "white"
     property Rectangle root
     property alias card_image: image
     property alias card_text: card_text
     property alias card_price: price
     property alias card_state: card.state
     property alias card_mouse: card_mouse
-
-    color: "white"
 
     Image {
         id: image
@@ -66,16 +65,12 @@ Rectangle {
             }
             PropertyChanges{target: price; text:""}
             PropertyChanges {target: loading; visible:true }
-        },
-        State {
-            name: "hidden"
-            PropertyChanges { target: card; opacity:0 }
         }
-
     ]
     state:""
 
-    transitions: [ Transition {
+    transitions: [
+        Transition {
             from:""
             to:"popped"
             PropertyAnimation{
@@ -83,18 +78,7 @@ Rectangle {
                 properties: "width,height,x,y"
                 duration: 500
             }
-        },
-        Transition {
-            from:""
-            to:"hidden"
-            PropertyAnimation{
-                target: card
-                property: "opacity"
-                duration: 500
-            }
         }
-
-
     ]
 
     MouseArea {

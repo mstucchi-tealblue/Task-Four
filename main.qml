@@ -9,25 +9,49 @@ Window {
     Rectangle {
         id:root
         anchors.fill: parent
-        state: {card1.card_state === "popped" || card2.card_state === "popped" ? "single" : ""  }
 
-        states: State {
-            name: "single"
-            PropertyChanges {
-                target: card1
-                opacity: card2.card_state==="popped" ? 0 : 1
-                //card_state: card2.card_state==="popped" ? "hidden":""
-                card_mouse.enabled: card2.card_state==="popped" ? false : true
+        states: [
+            State {
+                name: "single1"
+                when: card1.card_state == "popped"
+                PropertyChanges {
+                    target: card2
+                    opacity: 0
+                    card_mouse.enabled: false
+                }
+            },
+            State{
+                name: "single2"
+                when: card2.card_state == "popped"
+                PropertyChanges {
+                    target: card1
+                    opacity: 0
+                    card_mouse.enabled: false
+                }
             }
-            PropertyChanges {
-                target: card2
-                opacity: card1.card_state==="popped" ? 0 : 1
-                //card_state: card1.card_state==="popped" ? "hidden":""
-                card_mouse.enabled: card1.card_state==="popped" ? false : true
+        ]
+        state: ""
+
+        transitions: [
+            Transition {
+                from: ""
+                to: "single1"
+                PropertyAnimation{
+                    target: card2
+                    property: "opacity"
+                    duration: 500
+                }
+            },
+            Transition {
+                from: ""
+                to: "single2"
+                PropertyAnimation{
+                    target: card1
+                    property: "opacity"
+                    duration: 500
+                }
             }
-        }
-
-
+        ]
 
         Image {
             id: background
@@ -44,6 +68,7 @@ Window {
             card_text.text: qsTr("Espresso")
             card_price.text: "1.00$"
 
+
         }
 
         Card {
@@ -54,6 +79,7 @@ Window {
             card_image.source: "images/cappuccino.png"
             card_text.text: qsTr("Cappuccino")
             card_price.text: "3.50$"
+
 
         }
     }
