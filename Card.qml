@@ -78,6 +78,15 @@ Rectangle {
                 properties: "width,height,x,y"
                 duration: 500
             }
+        },
+        Transition {
+            from:"popped"
+            to:""
+            PropertyAnimation{
+                target: card
+                properties: "width,height,x,y"
+                duration: 500
+            }
         }
     ]
 

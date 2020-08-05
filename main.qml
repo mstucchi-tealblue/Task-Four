@@ -50,6 +50,24 @@ Window {
                     property: "opacity"
                     duration: 500
                 }
+            },
+            Transition {
+                from: "single1"
+                to: ""
+                PropertyAnimation{
+                    target: card2
+                    property: "opacity"
+                    duration: 500
+                }
+            },
+            Transition {
+                from: ""
+                to: "single2"
+                PropertyAnimation{
+                    target: card2
+                    property: "opacity"
+                    duration: 500
+                }
             }
         ]
 
