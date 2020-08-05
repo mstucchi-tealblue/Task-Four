@@ -9,6 +9,25 @@ Window {
     Rectangle {
         id:root
         anchors.fill: parent
+        state: {card1.card_state === "popped" || card2.card_state === "popped" ? "single" : ""  }
+
+        states: State {
+            name: "single"
+            PropertyChanges {
+                target: card1
+                opacity: card2.card_state==="popped" ? 0 : 1
+                //card_state: card2.card_state==="popped" ? "hidden":""
+                card_mouse.enabled: card2.card_state==="popped" ? false : true
+            }
+            PropertyChanges {
+                target: card2
+                opacity: card1.card_state==="popped" ? 0 : 1
+                //card_state: card1.card_state==="popped" ? "hidden":""
+                card_mouse.enabled: card1.card_state==="popped" ? false : true
+            }
+        }
+
+
 
         Image {
             id: background
@@ -21,25 +40,10 @@ Window {
             root:root
             x:150
             y:150
-            image.source: "images/espresso.png"
-            text_card.text: qsTr("Espresso")
-            price_card.text: "1.00$"
-            MouseArea {
-                anchors.fill: parent
-                propagateComposedEvents: true
-                onClicked:
-                    switch(card1.state_card) {
-                    case "":
-                        card2.card_opacity_anim.running = true
-                        mouse.accepted = false
-                        break
-                    case "dtapped":
-                        card1.state=""
-                        card2.card_opacity = 1
-                        card2.state=""
-                        break
-                    }
-            }
+            card_image.source: "images/espresso.png"
+            card_text.text: qsTr("Espresso")
+            card_price.text: "1.00$"
+
         }
 
         Card {
@@ -47,27 +51,11 @@ Window {
             root:root
             x: 360
             y: 150
-            image.source: "images/cappuccino.png"
-            text_card.text: qsTr("Cappuccino")
-            price_card.text: "3.50$"
-            MouseArea {
-                anchors.fill: parent
-                propagateComposedEvents: true
-                onClicked:
-                    switch(card2.state_card) {
-                    case "":
-                        card1.card_opacity_anim.running = true
-                        mouse.accepted = false
-                        break
-                    case "dtapped":
-                        card2.state=""
-                        card1.card_opacity = 1
-                        card2.state=""
-                        break
-                    }
+            card_image.source: "images/cappuccino.png"
+            card_text.text: qsTr("Cappuccino")
+            card_price.text: "3.50$"
 
-            }
         }
-
     }
+
 }
