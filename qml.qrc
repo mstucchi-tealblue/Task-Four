@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Card.qml</file>
+        <file>images/background.png</file>
+        <file>images/cappuccino.png</file>
+        <file>images/espresso.png</file>
+        <file>images/red-circle.png</file>
     </qresource>
 </RCC>
