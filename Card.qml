@@ -33,12 +33,12 @@ Rectangle {
     Image {
         id:loading
         source: "images/red-circle.png"
+        opacity:0
         anchors {
             top: card_text.bottom
             topMargin: 20
             horizontalCenter: parent.horizontalCenter
         }
-        visible: false
     }
 
     Text {
@@ -64,7 +64,7 @@ Rectangle {
                 y: root.height/2 - card.height/2
             }
             PropertyChanges{target: price; text:""}
-            PropertyChanges {target: loading; visible:true }
+            PropertyChanges {target: loading; opacity:1 }
         }
     ]
     state:""
@@ -73,18 +73,15 @@ Rectangle {
         Transition {
             from:""
             to:"popped"
+            reversible: true
             PropertyAnimation{
                 target: card
                 properties: "width,height,x,y"
                 duration: 500
             }
-        },
-        Transition {
-            from:"popped"
-            to:""
             PropertyAnimation{
-                target: card
-                properties: "width,height,x,y"
+                target: loading
+                properties: "opacity"
                 duration: 500
             }
         }

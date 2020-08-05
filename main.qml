@@ -36,6 +36,7 @@ Window {
             Transition {
                 from: ""
                 to: "single1"
+                reversible: true
                 PropertyAnimation{
                     target: card2
                     property: "opacity"
@@ -45,24 +46,7 @@ Window {
             Transition {
                 from: ""
                 to: "single2"
-                PropertyAnimation{
-                    target: card1
-                    property: "opacity"
-                    duration: 500
-                }
-            },
-            Transition {
-                from: "single1"
-                to: ""
-                PropertyAnimation{
-                    target: card2
-                    property: "opacity"
-                    duration: 500
-                }
-            },
-            Transition {
-                from: "single2"
-                to: ""
+                reversible: true
                 PropertyAnimation{
                     target: card1
                     property: "opacity"
@@ -80,25 +64,21 @@ Window {
         Card {
             id: card1
             root:root
-            x:150
-            y:150
+            x:100
+            y:190
             card_image.source: "images/espresso.png"
             card_text.text: qsTr("Espresso")
             card_price.text: "1.00$"
-
-
         }
 
         Card {
             id: card2
             root:root
-            x: 360
-            y: 150
+            x: 320
+            y: 190
             card_image.source: "images/cappuccino.png"
             card_text.text: qsTr("Cappuccino")
             card_price.text: "3.50$"
-
-
         }
     }
 
